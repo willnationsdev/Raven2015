@@ -18,22 +18,34 @@ Current Component list:
 - BoxCollider - provides physics related boundaries for collision detection
 - SoundMaker - provides the ability to load & play small sound files.
 - MusicMaker - provides the ability to open & stream large sound files.
+- Renderer - provides the ability to render elements relative to the Transform of the Entity.
+- Pawn - allows the object to respond to input.
+- Villain - a "tagging" component to recognize "enemies" in a game.
+- Tracer - An AI component that moves the Entity closer to the nearest Pawn over time.
+- Pacer - An AI component that moves the Entity along an axis in a ping-pong fashion.
 
 Current System list:
 - MovementSystem - updates the positions of all objects according to their current Rigidbody stats.
 - CollisionSystem - cycles through all objects and detects collisions. Emits collision events as appropriate.
 - AudioSystem - Responds to Music and Sound events to perform operations on audio resource files.
+- InputSystem - Listens for user input and triggers events based on "actions" which are mapped to inputs.
+- RenderingSystem - Cycles through all Entities with Renderers and draws objects associated with them.
+- GUISystem - Displays the engine's editor windows and interface.
+- TimerSystem (not currently operational) - Allows the user to trigger a function after a set period of time.
+- XMLSystem (partly operational) - "Saves" content by serializing and deserializing entity components and state information.
 
 Current Event list:
 - CollisionEvent - responds to a collision between two entities
 - SoundEvent - performs an operation on a small audio file.
 - MusicEvent - performs an operation on a large audio file.
 
-For the sake of time, we have forgone an implementation of an InputSystem for now and have simply created an unrelated InputManager class that manages SFML events associated with detecting keyboard input. Currently, we have the arrow keys and WASD mapped to movement operations.
+## Current Issues
+
+The Engine's default content currently has a sample project that showcased some small features at our latest demonstration. Needs to be updated to have these removed.
 
 ## Bugs & Workarounds
 
-We have been unable to identify the source problem for a bug in which events get received by Systems twice per emission. As a temporary workaround, we have provided a TemplateSystem.h file that comes with pre-defined methods designed to skip every other receive. It requires some additional legwork on the part of the developer, but it will have to do until we can identify the cause of the bug.
+The collision system is missing a proper implementation at the moment. The game therefore begins lagging very quickly as you add more entities with colliders.
 
 ## Installation
 
@@ -51,4 +63,4 @@ This installation guide will assume a build for Visual Studio 2015, built for a 
 
 #Players
 
-Feel free to experiment with moving around a blue dot using the WASD or up/down/left/right arrow keys. The game starts off playing an audio clip from the movie 300 to showcase Raven's ability to play audio files properly. The audio clip is triggered by a collision with a red dot in the top left corner. 
+Feel free to experiment with moving around a blue dot using the WASD or up/down/left/right arrow keys.
